@@ -15,6 +15,13 @@
       "when": 1726189796437,
       "tag": "0001_flat_shooting_star",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1726489083218,
+      "tag": "0002_fast_puppet_master",
+      "breakpoints": true
     }
   ]
 }
