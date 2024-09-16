@@ -2,6 +2,8 @@
 
 Esse é o lado do servidor do projeto in.orbit, ele é uma API construída junto ao [Drizzle ORM](https://orm.drizzle.team/) para ser requisitada pelo [Front-End](https://github.com/Victor-Lis/In.Orbit-Web) e assim levar os dados até o lado do cliente...
 
+O projeto foi criado no evento NLW da [RocketSeat](https://github.com/Rocketseat) com nível intermediário com tutoria do [Diego Fernandes](https://www.linkedin.com/in/diego-schell-fernandes/).
+
 ## Drizzle ORM
 Foi a primeira vez que trabalhei com esse [ORM](https://www.devmedia.com.br/orm-object-relational-mapper/19056), já tinha tido experiências anteriores com o [Prisma Schema](https://www.prisma.io/docs/orm/prisma-schema) então já tinha certa familiariadade com o uso de ORMs, mas ainda si foi uma experiência muito agregadora...
 
@@ -228,3 +230,4 @@ Conheço também o [Postman](https://web.postman.co/), funciona perfeitamente be
 
 # Autores
 - [@Victor-Lis](https://www.linkedin.com/in/victor-lis-bronzo/)
+- [@Diego Fernandes](https://www.linkedin.com/in/diego-schell-fernandes/)
