@@ -219,7 +219,8 @@ app
 Com isso já é possível entender o molde da aplicação, claro existem outras rotas (aproximadamente 5) e funções, mas a base dessa aplicação é essa
 
 ## Consultando servidor
-Para realizar as consultas utilizo há bastante tempo o [Insomnia](https://insomnia.rest/)
+Para realizar as consultas utilizo há bastante tempo o [Insomnia](https://insomnia.rest/).
+
 Conheço também o [Postman](https://web.postman.co/), funciona perfeitamente bem, porém não é minha preferência kkk
 
 ### Exemplo de uso
