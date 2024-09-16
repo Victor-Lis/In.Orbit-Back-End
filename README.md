@@ -26,7 +26,7 @@ import { env } from '../env'
 export const client = postgres(env.DATABASE_URL)
 export const db = drizzle(client, { schema })
 ```
-Com esse trecho acima é declarado já possível manipular o banco de dados
+Com esse trecho acima declarado já é possível manipular o banco de dados
 
 #### Declarando tabelas
 ```path
