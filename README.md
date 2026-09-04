@@ -1,83 +1,73 @@
-# 🎯 In.Orbit Back-End
+# In.Orbit — Back-End
 
-API para gerenciamento de metas e objetivos pessoais, construída com Node.js, Fastify e Drizzle ORM.
+API REST para gerenciamento de metas semanais pessoais: permite criar metas, registrar conclusões e consultar o progresso da semana. Construída com Fastify e Drizzle ORM sobre PostgreSQL.
 
-## 🚀 Tecnologias
+Projeto desenvolvido durante o NLW da [RocketSeat](https://www.rocketseat.com.br), com a base do curso estendida com organização de código em camadas (`functions` para regras de negócio, `http` para rotas) e validação de payloads com Zod integrada ao Fastify via `fastify-type-provider-zod`.
 
-- [Fastify](https://fastify.dev/) - Framework web rápido e ade baixa sobrecarga
-- [Drizzle ORM](https://orm.drizzle.team/) - ORM moderno para TypeScript
-- [PostgreSQL](https://www.postgresql.org/) - Banco de dados relacional
-- [TypeScript](https://www.typescriptlang.org/) - Adiciona tipagem estática ao JavaScript
+## Arquitetura
 
-## ⚙️ Funcionalidades
-
-- Criação e gerenciamento de metas
-- Registro de conclusões de metas
-- Acompanhamento semanal de progresso
-- Relatórios de desempenho
-
-## 🛠️ Instalação
-
-1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/in-orbit-backend.git
+```
+src/
+├── db/            # Configuração do Drizzle (client, schema, seed)
+├── functions/     # Regras de negócio (criação/remoção de metas e conclusões, cálculo de resumo semanal)
+├── http/          # Rotas Fastify (uma por endpoint)
+├── env.ts         # Validação das variáveis de ambiente com Zod
+└── http/server.ts # Bootstrap do servidor Fastify
 ```
 
-2. Instale as dependências
+## Pré-requisitos
+
+- Node.js 20.6+ (os scripts usam a flag nativa `--env-file`)
+- PostgreSQL acessível via `DATABASE_URL`
+
+## Variáveis de ambiente
+
+Declaradas e validadas em `src/env.ts`:
+
+- `PORT`
+- `DATABASE_URL` (string de conexão do PostgreSQL)
+
+Crie um arquivo `.env` na raiz com essas variáveis antes de rodar o projeto (não há `.env.example` no repositório).
+
+## Instalação e execução
+
 ```bash
 npm install
 ```
 
-3. Configure as variáveis de ambiente
-```env
-PORT=3333
-DATABASE_URL=postgresql://seu-usuario:senha@host/database
-```
-
-4. Execute as migrações
+Rodar as migrações (Drizzle Kit está nas devDependencies):
 ```bash
 npx drizzle-kit generate
 npx drizzle-kit migrate
 ```
 
-5. Inicie o servidor
+Popular o banco com dados iniciais:
+```bash
+npm run seed
+```
+
+Subir o servidor em modo desenvolvimento:
 ```bash
 npm run dev
 ```
 
-## 📦 Estrutura do Projeto
+## Endpoints
 
-```
-src/
-  ├── db/               # Configurações do banco de dados
-  ├── functions/        # Regras de negócio
-  ├── http/            # Rotas e controllers
-  └── env.ts           # Variáveis de ambiente
-```
+| Método | Rota | Descrição |
+| --- | --- | --- |
+| `POST` | `/goals` | Cria uma nova meta (`title`, `desiredWeeklyFrequency`) |
+| `DELETE` | `/goal` | Remove uma meta (`goalId`) |
+| `GET` | `/pending-goals` | Lista as metas pendentes da semana |
+| `GET` | `/summary` | Retorna o resumo semanal de progresso |
+| `POST` | `/completions` | Registra a conclusão de uma meta (`goalId`) |
+| `DELETE` | `/completion` | Remove um registro de conclusão (`completionId`) |
 
-## 🔌 Endpoints
+CORS está liberado para qualquer origem (`origin: '*'`) em `src/http/server.ts`.
 
-### Metas
-- `POST /goals` - Criar nova meta
-- `DELETE /goals` - Remover meta
-- `GET /pending-goals` - Listar metas pendentes
-- `GET /summary` - Resumo semanal
+## Testes
 
-### Conclusões
-- `POST /completions` - Registrar conclusão
-- `DELETE /completion` - Remover conclusão
+Não há testes automatizados configurados no projeto atualmente.
 
-## 🧪 Testes e Desenvolvimento
+## Licença
 
-Para testar as rotas, recomendamos usar:
-- [Insomnia](https://insomnia.rest/)
-- [Postman](https://www.postman.com/)
-
-## 👥 Autores
-
-- [@Victor-Lis](https://www.linkedin.com/in/victor-lis-bronzo/) - Desenvolvimento
-- [@Diego Fernandes](https://www.linkedin.com/in/diego-schell-fernandes/) - Mentoria
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+MIT — ver o arquivo `LICENSE`.
